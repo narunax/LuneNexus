@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(if [ -d \"要件定義\" ])",
+      "Bash(then echo \"directory\")",
+      "Bash(else echo \"file\")",
+      "Bash(fi)",
+      "Bash(if [ -d \"src\" ])",
+      "Bash(then echo \"src exists\")",
+      "Bash(else echo \"src does not exist\")",
+      "Bash(npx create-next-app:*)",
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill /F /PID 43340)",
+      "Bash(npx next lint:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
