@@ -20,6 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               color: isFocused ? '#C9B88A' : '#A8A8B3',
               scale: isFocused ? 0.95 : 1,
             }}
+            transition={{ duration: 0.15 }}
             className="block text-sm font-heading mb-2"
           >
             {label}
@@ -39,7 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30',
               'text-text-primary placeholder:text-text-secondary',
               'focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20',
-              'transition-all duration-300',
+              'transition-all duration-150',
               icon && 'pl-10',
               error && 'border-negative focus:border-negative focus:ring-negative/20',
               className
@@ -80,6 +81,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               color: isFocused ? '#C9B88A' : '#A8A8B3',
               scale: isFocused ? 0.95 : 1,
             }}
+            transition={{ duration: 0.15 }}
             className="block text-sm font-heading mb-2"
           >
             {label}
@@ -93,7 +95,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30',
             'text-text-primary placeholder:text-text-secondary',
             'focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20',
-            'transition-all duration-300 resize-none',
+            'transition-all duration-150 resize-none',
             error && 'border-negative focus:border-negative focus:ring-negative/20',
             className
           )}

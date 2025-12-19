@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Calculator, Crown, Calendar, User, TrendingUp, TrendingDown, Target, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -33,14 +33,92 @@ const japaneseNames = [
 
 export default function KabbalahPage() {
   const [birthDate, setBirthDate] = useState('')
+  const [year, setYear] = useState('')
+  const [month, setMonth] = useState('')
+  const [day, setDay] = useState('')
   const [fullName, setFullName] = useState('')
   const [result, setResult] = useState<KabbalahResult | null>(null)
   const [isCalculating, setIsCalculating] = useState(false)
+
+  const yearRef = useRef<HTMLInputElement>(null)
+  const monthRef = useRef<HTMLInputElement>(null)
+  const dayRef = useRef<HTMLInputElement>(null)
 
   const randomPlaceholder = useMemo(
     () => japaneseNames[Math.floor(Math.random() * japaneseNames.length)],
     []
   )
+
+  // Update birthDate whenever year/month/day changes
+  useEffect(() => {
+    if (year.length === 4 && month.length === 2 && day.length === 2) {
+      setBirthDate(`${year}-${month}-${day}`)
+    } else {
+      setBirthDate('')
+    }
+  }, [year, month, day])
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 4)
+    setYear(value)
+    if (value.length === 4) {
+      monthRef.current?.focus()
+    }
+  }
+
+  const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 2)
+
+    if (value === '') {
+      setMonth('')
+      return
+    }
+
+    // 1桁目の処理
+    if (value.length === 1) {
+      const firstDigit = parseInt(value)
+      if (firstDigit >= 0 && firstDigit <= 1) {
+        // 0 or 1 の場合は2桁目を待つ
+        setMonth(value)
+      } else if (firstDigit >= 2 && firstDigit <= 9) {
+        // 2-9の場合は0を前置して即座に日へ
+        setMonth('0' + value)
+        dayRef.current?.focus()
+      }
+    } else if (value.length === 2) {
+      const numValue = parseInt(value)
+      if (numValue >= 1 && numValue <= 12) {
+        setMonth(value)
+        dayRef.current?.focus()
+      }
+    }
+  }
+
+  const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 2)
+
+    if (value === '') {
+      setDay('')
+      return
+    }
+
+    // 1桁目の処理
+    if (value.length === 1) {
+      const firstDigit = parseInt(value)
+      if (firstDigit >= 0 && firstDigit <= 3) {
+        // 0-3 の場合は2桁目を待つ
+        setDay(value)
+      } else if (firstDigit >= 4 && firstDigit <= 9) {
+        // 4-9の場合は0を前置
+        setDay('0' + value)
+      }
+    } else if (value.length === 2) {
+      const numValue = parseInt(value)
+      if (numValue >= 1 && numValue <= 31) {
+        setDay(value)
+      }
+    }
+  }
 
   const handleCalculate = async () => {
     if (!birthDate || !fullName) return
@@ -107,7 +185,7 @@ export default function KabbalahPage() {
       transition={{ duration: 0.5 }}
       className="h-full"
     >
-      <Card variant="glass" className="h-full hover:shadow-2xl transition-all duration-300 border-l-4" style={{ borderLeftColor: accentColor }}>
+      <Card variant="glass" className="h-full hover:shadow-2xl transition-all duration-150 border-l-4" style={{ borderLeftColor: accentColor }}>
         <CardContent className="p-6">
           {/* Header */}
           <div className="flex items-start justify-between mb-4">
@@ -252,15 +330,50 @@ export default function KabbalahPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-8">
-                  <Input
-                    type="date"
-                    label="生年月日"
-                    icon={<Calendar className="w-5 h-5" />}
-                    value={birthDate}
-                    onChange={(e) => setBirthDate(e.target.value)}
-                    placeholder="1990-01-01"
-                    className="text-lg py-4"
-                  />
+                  <div>
+                    <label className="block text-sm font-heading mb-2 text-champagne-300">
+                      生年月日
+                    </label>
+                    <div className="flex items-center gap-2 justify-center">
+                      <div className="relative">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
+                          <Calendar className="w-5 h-5" />
+                        </div>
+                        <input
+                          ref={yearRef}
+                          type="text"
+                          inputMode="numeric"
+                          value={year}
+                          onChange={handleYearChange}
+                          placeholder="1990"
+                          maxLength={4}
+                          className="w-32 px-4 py-3 pl-10 rounded-lg bg-bg-secondary border border-midnight-400/30 text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20 transition-all duration-150 text-lg text-center"
+                        />
+                      </div>
+                      <span className="text-text-secondary text-xl">/</span>
+                      <input
+                        ref={monthRef}
+                        type="text"
+                        inputMode="numeric"
+                        value={month}
+                        onChange={handleMonthChange}
+                        placeholder="01"
+                        maxLength={2}
+                        className="w-20 px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30 text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20 transition-all duration-150 text-lg text-center"
+                      />
+                      <span className="text-text-secondary text-xl">/</span>
+                      <input
+                        ref={dayRef}
+                        type="text"
+                        inputMode="numeric"
+                        value={day}
+                        onChange={handleDayChange}
+                        placeholder="01"
+                        maxLength={2}
+                        className="w-20 px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30 text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20 transition-all duration-150 text-lg text-center"
+                      />
+                    </div>
+                  </div>
                   <Input
                     type="text"
                     label="フルネーム（ローマ字）"
@@ -433,6 +546,9 @@ export default function KabbalahPage() {
                 onClick={() => {
                   setResult(null)
                   setBirthDate('')
+                  setYear('')
+                  setMonth('')
+                  setDay('')
                   setFullName('')
                 }}
                 className="px-12"

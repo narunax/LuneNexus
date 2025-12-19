@@ -33,9 +33,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         whileHover={{ scale: disabled || loading ? 1 : 1.05 }}
         whileTap={{ scale: disabled || loading ? 1 : 0.95 }}
+        transition={{ duration: 0.15 }}
         disabled={disabled || loading}
         className={cn(
-          'relative font-heading rounded-lg overflow-hidden transition-all duration-300',
+          'relative font-heading rounded-lg overflow-hidden transition-all duration-150',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           'focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:ring-offset-2 focus:ring-offset-bg-primary',
           variantStyles[variant],

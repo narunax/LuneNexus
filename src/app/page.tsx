@@ -59,24 +59,24 @@ export default function Home() {
           >
             <Link
               href="/kabbalah"
-              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
+              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-150 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Crown className="w-5 h-5" />
                 カバラ数秘術を始める
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
             </Link>
 
             <Link
               href="/iching"
-              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
+              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-150 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <TaijiIcon size={20} />
                 易経で占う
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
             </Link>
           </motion.div>
         </div>
