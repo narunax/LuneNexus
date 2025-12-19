@@ -13,8 +13,8 @@ interface CardProps extends HTMLMotionProps<'div'> {
 const variantStyles: Record<CardVariant, string> = {
   glass: 'glass',
   solid: 'bg-bg-secondary border border-bg-card',
-  bordered: 'bg-transparent border-2 border-mystic-purple/30',
-  floating: 'glass shadow-2xl shadow-mystic-purple/20',
+  bordered: 'bg-transparent border-2 border-midnight-400/30',
+  floating: 'glass shadow-2xl shadow-champagne-500/20',
 }
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
@@ -26,6 +26,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
         className={cn(
           'rounded-2xl p-6 transition-all duration-300',
           variantStyles[variant],
@@ -55,7 +56,7 @@ export const CardTitle: React.FC<{ children: React.ReactNode; className?: string
   children,
   className,
 }) => (
-  <h3 className={cn('font-heading text-2xl text-oracle-gold', className)}>
+  <h3 className={cn('font-heading text-2xl text-champagne-400', className)}>
     {children}
   </h3>
 )

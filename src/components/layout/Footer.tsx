@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Github, Heart, Mail } from 'lucide-react'
+import { Github, Mail } from 'lucide-react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -14,26 +14,29 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-display text-xl text-oracle-gold mb-4">
-              Mystical Insights
+            <h3 className="font-display text-xl text-champagne-400 mb-4">
+              LUNE NEXUS
             </h3>
+            <p className="text-sm text-champagne-300 mb-2">
+              〜 数秘と易の黄金律 〜
+            </p>
             <p className="text-sm text-text-secondary leading-relaxed">
               古代の叡智と現代のテクノロジーを融合し、
               人々の自己理解と成長を支援する
-              世界最高峰の占いプラットフォーム
+              神秘の占いプラットフォーム
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-heading text-lg text-oracle-gold mb-4">
+            <h3 className="font-heading text-lg text-champagne-400 mb-4">
               占術メニュー
             </h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/kabbalah"
-                  className="text-sm text-text-secondary hover:text-oracle-gold transition-colors"
+                  className="text-sm text-text-secondary hover:text-champagne-400 transition-colors"
                 >
                   カバラ数秘術
                 </Link>
@@ -41,7 +44,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/iching"
-                  className="text-sm text-text-secondary hover:text-oracle-gold transition-colors"
+                  className="text-sm text-text-secondary hover:text-champagne-400 transition-colors"
                 >
                   易経占い
                 </Link>
@@ -51,14 +54,14 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-heading text-lg text-oracle-gold mb-4">
+            <h3 className="font-heading text-lg text-champagne-400 mb-4">
               お問い合わせ
             </h3>
             <div className="flex gap-4">
               <motion.a
                 href="mailto:info@mysticalinsights.example"
                 whileHover={{ scale: 1.1 }}
-                className="text-text-secondary hover:text-oracle-gold transition-colors"
+                className="text-text-secondary hover:text-champagne-400 transition-colors"
               >
                 <Mail className="w-5 h-5" />
               </motion.a>
@@ -67,7 +70,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
-                className="text-text-secondary hover:text-oracle-gold transition-colors"
+                className="text-text-secondary hover:text-champagne-400 transition-colors"
               >
                 <Github className="w-5 h-5" />
               </motion.a>
@@ -77,12 +80,9 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-text-secondary flex items-center gap-2">
-              Made with <Heart className="w-4 h-4 text-red-500" /> using Claude Code
-            </p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <p className="text-sm text-text-secondary">
-              &copy; {currentYear} Mystical Insights. All rights reserved.
+              &copy; {currentYear} LUNE NEXUS. All rights reserved.
             </p>
           </div>
         </div>

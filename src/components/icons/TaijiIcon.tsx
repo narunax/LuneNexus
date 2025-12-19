@@ -30,10 +30,10 @@ export function TaijiIcon({ className = '', size = 24 }: TaijiIconProps) {
       />
 
       {/* 陽の目（白い点） */}
-      <circle cx="12" cy="6.5" r="2" fill="white" />
+      <circle cx="12" cy="6.5" r="2" fill="#FFFFFF" />
 
       {/* 陰の目（黒い点） */}
-      <circle cx="12" cy="17.5" r="2" fill="currentColor" />
+      <circle cx="12" cy="17.5" r="2" fill="#0C1424" />
     </svg>
   )
 }

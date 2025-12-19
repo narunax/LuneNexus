@@ -17,7 +17,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <motion.label
             animate={{
-              color: isFocused ? '#D4AF37' : '#A8A8B3',
+              color: isFocused ? '#C9B88A' : '#A8A8B3',
               scale: isFocused ? 0.95 : 1,
             }}
             className="block text-sm font-heading mb-2"
@@ -36,9 +36,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-mystic-purple/30',
+              'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30',
               'text-text-primary placeholder:text-text-secondary',
-              'focus:outline-none focus:border-oracle-gold focus:ring-2 focus:ring-oracle-gold/20',
+              'focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20',
               'transition-all duration-300',
               icon && 'pl-10',
               error && 'border-negative focus:border-negative focus:ring-negative/20',
@@ -77,7 +77,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <motion.label
             animate={{
-              color: isFocused ? '#D4AF37' : '#A8A8B3',
+              color: isFocused ? '#C9B88A' : '#A8A8B3',
               scale: isFocused ? 0.95 : 1,
             }}
             className="block text-sm font-heading mb-2"
@@ -90,9 +90,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className={cn(
-            'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-mystic-purple/30',
+            'w-full px-4 py-3 rounded-lg bg-bg-secondary border border-midnight-400/30',
             'text-text-primary placeholder:text-text-secondary',
-            'focus:outline-none focus:border-oracle-gold focus:ring-2 focus:ring-oracle-gold/20',
+            'focus:outline-none focus:border-champagne-500 focus:ring-2 focus:ring-champagne-500/20',
             'transition-all duration-300 resize-none',
             error && 'border-negative focus:border-negative focus:ring-negative/20',
             className

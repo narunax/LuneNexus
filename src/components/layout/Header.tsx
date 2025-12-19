@@ -25,9 +25,9 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="font-display text-2xl gradient-text"
+              className="font-display text-xl md:text-2xl gradient-text"
             >
-              Mystical Insights
+              LUNE NEXUS
             </motion.div>
           </Link>
 
@@ -46,7 +46,7 @@ export function Header() {
                       'flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300',
                       'border border-transparent',
                       isActive
-                        ? 'bg-mystic-purple/20 border-mystic-purple text-oracle-gold'
+                        ? 'bg-midnight-500/20 border-midnight-400 text-champagne-400'
                         : 'hover:bg-bg-secondary hover:border-white/10 text-text-secondary hover:text-text-primary'
                     )}
                   >

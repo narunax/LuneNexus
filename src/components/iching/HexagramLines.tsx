@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 interface HexagramLinesProps {
   binary: string
   changingLines?: number[]
+  lineValues?: (6 | 7 | 8 | 9)[] // 6-9の値の配列（下から上へ）
   size?: 'sm' | 'md' | 'lg'
   className?: string
 }
@@ -19,6 +20,7 @@ const sizeMap = {
 export function HexagramLines({
   binary,
   changingLines = [],
+  lineValues,
   size = 'md',
   className = '',
 }: HexagramLinesProps) {
@@ -26,38 +28,26 @@ export function HexagramLines({
   const lines = binary.split('').reverse() // 下から上へ
 
   return (
-    <div className={`flex flex-col ${gap} ${className}`}>
-      {lines.map((bit, index) => {
-        const lineNumber = index + 1
-        const isChanging = changingLines.includes(lineNumber)
-        const isYang = bit === '1'
+    <div className={`flex items-center gap-6 ${className}`}>
+      {/* 左側：卦図（6本の線）※下から上へ表示 */}
+      <div className={`flex flex-col-reverse ${gap}`}>
+        {lines.map((bit, index) => {
+          const lineNumber = index + 1
+          const isChanging = changingLines.includes(lineNumber)
+          const isYang = bit === '1'
 
-        return (
-          <motion.div
-            key={index}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className={`${width} mx-auto`}
-          >
-            {isYang ? (
-              // 陽爻（一本線）
-              <motion.div
-                className={`${height} bg-oracle-gold rounded ${
-                  isChanging ? 'animate-pulse' : ''
-                }`}
-                animate={isChanging ? { opacity: [1, 0.5, 1] } : {}}
-                transition={
-                  isChanging
-                    ? { duration: 1, repeat: Infinity }
-                    : {}
-                }
-              />
-            ) : (
-              // 陰爻（二本線）
-              <div className="flex gap-2">
+          return (
+            <motion.div
+              key={index}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className={width}
+            >
+              {isYang ? (
+                // 陽爻（一本線）
                 <motion.div
-                  className={`flex-1 ${height} bg-mystic-purple rounded ${
+                  className={`${height} bg-champagne-300 ${
                     isChanging ? 'animate-pulse' : ''
                   }`}
                   animate={isChanging ? { opacity: [1, 0.5, 1] } : {}}
@@ -67,32 +57,67 @@ export function HexagramLines({
                       : {}
                   }
                 />
-                <motion.div
-                  className={`flex-1 ${height} bg-mystic-purple rounded ${
-                    isChanging ? 'animate-pulse' : ''
-                  }`}
-                  animate={isChanging ? { opacity: [1, 0.5, 1] } : {}}
-                  transition={
-                    isChanging
-                      ? { duration: 1, repeat: Infinity }
-                      : {}
-                  }
-                />
-              </div>
-            )}
+              ) : (
+                // 陰爻（二本線）
+                <div className="flex gap-2">
+                  <motion.div
+                    className={`flex-1 ${height} bg-midnight-400 ${
+                      isChanging ? 'animate-pulse' : ''
+                    }`}
+                    animate={isChanging ? { opacity: [1, 0.5, 1] } : {}}
+                    transition={
+                      isChanging
+                        ? { duration: 1, repeat: Infinity }
+                        : {}
+                    }
+                  />
+                  <motion.div
+                    className={`flex-1 ${height} bg-midnight-400 ${
+                      isChanging ? 'animate-pulse' : ''
+                    }`}
+                    animate={isChanging ? { opacity: [1, 0.5, 1] } : {}}
+                    transition={
+                      isChanging
+                        ? { duration: 1, repeat: Infinity }
+                        : {}
+                    }
+                  />
+                </div>
+              )}
+            </motion.div>
+          )
+        })}
+      </div>
 
-            {/* Line number label */}
-            <div className="text-center mt-1">
-              <span className="text-xs text-text-secondary">
-                {lineNumber}
+      {/* 右側：数字と変爻マーク（左詰め）※下から上へ表示 */}
+      <div className={`flex flex-col-reverse ${gap}`}>
+        {lines.map((bit, index) => {
+          const lineNumber = index + 1
+          const isChanging = changingLines.includes(lineNumber)
+          const displayValue = lineValues ? lineValues[index] : lineNumber
+
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className={`flex items-center justify-start ${
+                size === 'sm' ? 'h-1' : size === 'md' ? 'h-2' : 'h-3'
+              }`}
+            >
+              <span className={`${size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-base'} font-medium ${
+                isChanging ? 'text-champagne-300' : 'text-gray-400'
+              }`}>
+                {displayValue}
                 {isChanging && (
-                  <span className="ml-1 text-oracle-gold">●</span>
+                  <span className="ml-1 text-champagne-400">●</span>
                 )}
               </span>
-            </div>
-          </motion.div>
-        )
-      })}
+            </motion.div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -107,18 +132,18 @@ export function HexagramLineSimple({
   const lines = binary.split('').reverse()
 
   return (
-    <div className={`flex flex-col gap-1 ${className}`}>
+    <div className={`flex flex-col-reverse gap-1 ${className}`}>
       {lines.map((bit, index) => {
         const isYang = bit === '1'
 
         return (
           <div key={index} className="w-16 h-1">
             {isYang ? (
-              <div className="w-full h-full bg-oracle-gold rounded" />
+              <div className="w-full h-full bg-champagne-300 rounded" />
             ) : (
               <div className="flex gap-1">
-                <div className="flex-1 h-full bg-mystic-purple rounded" />
-                <div className="flex-1 h-full bg-mystic-purple rounded" />
+                <div className="flex-1 h-full bg-midnight-400 rounded" />
+                <div className="flex-1 h-full bg-midnight-400 rounded" />
               </div>
             )}
           </div>

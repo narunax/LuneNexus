@@ -29,7 +29,7 @@ export function Loading({ text = '読み込み中...', size = 'md' }: LoadingPro
         }}
         className="mb-4"
       >
-        <TaijiIcon size={iconSize} className="text-oracle-gold" />
+        <TaijiIcon size={iconSize} className="text-champagne-400" />
       </motion.div>
       <motion.p
         animate={{
@@ -57,7 +57,7 @@ export function LoadingSpinner({ className = '' }: { className?: string }) {
         repeat: Infinity,
         ease: 'linear',
       }}
-      className={`w-6 h-6 border-2 border-oracle-gold border-t-transparent rounded-full ${className}`}
+      className={`w-6 h-6 border-2 border-champagne-400 border-t-transparent rounded-full ${className}`}
     />
   )
 }

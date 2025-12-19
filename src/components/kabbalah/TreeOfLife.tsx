@@ -295,7 +295,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
 
         {/* Legend - moved below SVG to avoid overlap */}
         <div className="mt-4 p-4 glass rounded-lg">
-          <h4 className="text-base font-heading text-pink-300 mb-3 text-center">
+          <h4 className="text-base font-heading text-champagne-300 mb-3 text-center">
             生命の樹（セフィロトの木）
           </h4>
           <p className="text-sm text-gray-300 text-center mb-2">
@@ -350,13 +350,13 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
                     >
                       {selectedSephira.id}
                     </div>
-                    <h3 className="font-display text-4xl text-fuchsia-300 mb-2">
+                    <h3 className="font-display text-4xl text-champagne-400 mb-2">
                       {selectedSephira.name}
                     </h3>
                     <p className="text-xl text-gray-300 italic mb-1">
                       {selectedSephira.hebrewName}
                     </p>
-                    <p className="text-base text-pink-300 font-heading">
+                    <p className="text-base text-champagne-300 font-heading">
                       {selectedSephira.attribute}
                     </p>
                   </div>
@@ -370,7 +370,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
 
                   {/* Keywords */}
                   <div className="mb-6">
-                    <h4 className="text-base font-heading text-fuchsia-300 mb-3 flex items-center gap-2">
+                    <h4 className="text-base font-heading text-champagne-400 mb-3 flex items-center gap-2">
                       <span className="text-xl">🔑</span>
                       キーワード
                     </h4>
@@ -378,7 +378,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
                       {selectedSephira.keywords.map((keyword, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1.5 text-sm bg-purple-500/30 text-purple-200 rounded-full border border-purple-400/50"
+                          className="px-3 py-1.5 text-sm bg-midnight-500/30 text-midnight-200 rounded-full border border-midnight-400/50"
                         >
                           {keyword}
                         </span>
@@ -388,7 +388,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
 
                   {/* Correspondences */}
                   <div className="space-y-3">
-                    <h4 className="text-base font-heading text-pink-300 mb-3 flex items-center gap-2">
+                    <h4 className="text-base font-heading text-champagne-300 mb-3 flex items-center gap-2">
                       <span className="text-xl">✨</span>
                       対応関係
                     </h4>
@@ -412,7 +412,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
                       {selectedSephira.correspondences.virtue && (
                         <div className="p-3 glass rounded-lg">
                           <div className="text-sm text-gray-400 mb-1">美徳</div>
-                          <div className="text-base text-pink-300 font-medium">
+                          <div className="text-base text-champagne-300 font-medium">
                             {selectedSephira.correspondences.virtue}
                           </div>
                         </div>
@@ -420,7 +420,7 @@ export function TreeOfLife({ highlightedSephira, className = '' }: TreeOfLifePro
                       {selectedSephira.correspondences.vice && (
                         <div className="p-3 glass rounded-lg">
                           <div className="text-sm text-gray-400 mb-1">悪徳</div>
-                          <div className="text-base text-purple-300 font-medium">
+                          <div className="text-base text-midnight-300 font-medium">
                             {selectedSephira.correspondences.vice}
                           </div>
                         </div>

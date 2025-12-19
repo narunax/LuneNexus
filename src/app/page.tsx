@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, Moon, Star } from 'lucide-react'
+import { Crown, Moon, Star } from 'lucide-react'
 import Link from 'next/link'
 import { TaijiIcon } from '@/components/icons/TaijiIcon'
 
@@ -18,13 +18,16 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl mb-6 gradient-text">
-              Mystical Insights
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl mb-4 gradient-text">
+              LUNE NEXUS
             </h1>
+            <p className="font-heading text-xl md:text-2xl text-champagne-300 mb-6">
+              〜 数秘と易の黄金律 〜
+            </p>
             <div className="flex items-center justify-center gap-4 mb-4">
-              <Star className="w-8 h-8 text-pink-300 animate-pulse" />
-              <Moon className="w-10 h-10 text-fuchsia-300" />
-              <Star className="w-8 h-8 text-pink-300 animate-pulse" />
+              <Star className="w-8 h-8 text-champagne-300 animate-pulse" />
+              <Moon className="w-10 h-10 text-midnight-300" />
+              <Star className="w-8 h-8 text-champagne-300 animate-pulse" />
             </div>
           </motion.div>
 
@@ -56,23 +59,24 @@ export default function Home() {
           >
             <Link
               href="/kabbalah"
-              className="group relative px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-lg text-white font-heading text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
+              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
             >
               <span className="relative z-10 flex items-center gap-2">
-                <Sparkles className="w-5 h-5" />
+                <Crown className="w-5 h-5" />
                 カバラ数秘術を始める
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
 
             <Link
               href="/iching"
-              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-fuchsia-400/50 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-pink-400"
+              className="group relative px-8 py-4 glass rounded-lg text-text-primary font-heading text-lg border-2 border-champagne-400/50 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-champagne-500/50"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <TaijiIcon size={20} />
                 易経で占う
               </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-champagne-600 to-champagne-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </motion.div>
         </div>
@@ -87,7 +91,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-20 left-10 text-pink-400 opacity-20"
+          className="absolute top-20 left-10 text-champagne-400 opacity-20"
         >
           <Star className="w-16 h-16" />
         </motion.div>
@@ -101,7 +105,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute bottom-20 right-10 text-fuchsia-400 opacity-20"
+          className="absolute bottom-20 right-10 text-midnight-400 opacity-20"
         >
           <Moon className="w-20 h-20" />
         </motion.div>
@@ -119,13 +123,14 @@ export default function Home() {
           >
             {/* Kabbalah Card */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-400/20"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.15 }}
+              className="glass rounded-2xl p-8 transition-all duration-200 hover:shadow-2xl hover:shadow-champagne-400/20"
             >
-              <div className="text-pink-300 mb-4">
-                <Sparkles className="w-12 h-12" />
+              <div className="text-champagne-400 mb-4">
+                <Crown className="w-12 h-12" />
               </div>
-              <h3 className="font-heading text-2xl mb-4 text-pink-300">
+              <h3 className="font-heading text-2xl mb-4 text-champagne-400">
                 カバラ数秘術
               </h3>
               <p className="text-text-secondary mb-4">
@@ -141,13 +146,14 @@ export default function Home() {
 
             {/* I Ching Card */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-fuchsia-400/20"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.15 }}
+              className="glass rounded-2xl p-8 transition-all duration-200 hover:shadow-2xl hover:shadow-midnight-400/20"
             >
-              <div className="text-fuchsia-300 mb-4">
+              <div className="text-midnight-300 mb-4">
                 <TaijiIcon size={48} />
               </div>
-              <h3 className="font-heading text-2xl mb-4 text-fuchsia-300">
+              <h3 className="font-heading text-2xl mb-4 text-midnight-300">
                 易経
               </h3>
               <p className="text-text-secondary mb-4">

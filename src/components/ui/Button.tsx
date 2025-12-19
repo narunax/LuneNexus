@@ -14,10 +14,10 @@ interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'size'> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-gradient-to-r from-mystic-purple to-oracle-gold text-white hover:shadow-2xl hover:shadow-mystic-purple/50',
-  secondary: 'glass border-2 border-mystic-purple/30 text-text-primary hover:border-oracle-gold',
-  mystic: 'aurora-bg text-white hover:shadow-2xl hover:shadow-oracle-gold/50',
-  ghost: 'bg-transparent text-text-secondary hover:text-oracle-gold hover:bg-bg-card',
+  primary: 'bg-gradient-to-r from-midnight-500 to-champagne-500 text-white hover:shadow-2xl hover:shadow-champagne-500/50',
+  secondary: 'glass border-2 border-midnight-400/30 text-text-primary hover:border-champagne-500',
+  mystic: 'aurora-bg text-white hover:shadow-2xl hover:shadow-champagne-500/50',
+  ghost: 'bg-transparent text-text-secondary hover:text-champagne-500 hover:bg-bg-card',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -37,7 +37,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           'relative font-heading rounded-lg overflow-hidden transition-all duration-300',
           'disabled:opacity-50 disabled:cursor-not-allowed',
-          'focus:outline-none focus:ring-2 focus:ring-oracle-gold focus:ring-offset-2 focus:ring-offset-bg-primary',
+          'focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:ring-offset-2 focus:ring-offset-bg-primary',
           variantStyles[variant],
           sizeStyles[size],
           className

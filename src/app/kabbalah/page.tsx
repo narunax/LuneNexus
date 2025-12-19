@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Calculator, Sparkles, Calendar, User, TrendingUp, TrendingDown, Target, Lightbulb } from 'lucide-react'
+import { Calculator, Crown, Calendar, User, TrendingUp, TrendingDown, Target, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
@@ -130,7 +130,7 @@ export default function KabbalahPage() {
           {/* Badges */}
           <div className="flex flex-wrap gap-2 mb-4">
             {numberResult.isMaster && (
-              <span className="px-3 py-1.5 text-sm bg-purple-500/30 text-purple-200 rounded-full border border-purple-400/50 font-medium">
+              <span className="px-3 py-1.5 text-sm bg-midnight-500/30 text-midnight-200 rounded-full border border-midnight-400/50 font-medium">
                 ✨ マスターナンバー
               </span>
             )}
@@ -170,12 +170,12 @@ export default function KabbalahPage() {
           <div className="space-y-4 mb-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-5 h-5 text-pink-400" />
-                <span className="text-sm font-heading text-pink-300">長所・才能</span>
+                <TrendingUp className="w-5 h-5 text-champagne-400" />
+                <span className="text-sm font-heading text-champagne-300">長所・才能</span>
               </div>
               <ul className="space-y-1.5">
                 {numberResult.interpretation.positiveTraits.map((trait, idx) => (
-                  <li key={idx} className="text-sm text-gray-200 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-pink-400">
+                  <li key={idx} className="text-sm text-gray-200 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-champagne-400">
                     {trait}
                   </li>
                 ))}
@@ -184,12 +184,12 @@ export default function KabbalahPage() {
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <TrendingDown className="w-5 h-5 text-purple-400" />
-                <span className="text-sm font-heading text-purple-300">課題・注意点</span>
+                <TrendingDown className="w-5 h-5 text-midnight-400" />
+                <span className="text-sm font-heading text-midnight-300">課題・注意点</span>
               </div>
               <ul className="space-y-1.5">
                 {numberResult.interpretation.negativeTraits.map((trait, idx) => (
-                  <li key={idx} className="text-sm text-gray-200 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-purple-400">
+                  <li key={idx} className="text-sm text-gray-200 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-midnight-400">
                     {trait}
                   </li>
                 ))}
@@ -200,9 +200,9 @@ export default function KabbalahPage() {
           {/* Advice */}
           <div className="pt-4 border-t border-white/10">
             <div className="flex items-start gap-2">
-              <Lightbulb className="w-5 h-5 text-fuchsia-400 mt-0.5 flex-shrink-0" />
+              <Lightbulb className="w-5 h-5 text-champagne-500 mt-0.5 flex-shrink-0" />
               <div>
-                <span className="text-sm font-heading text-fuchsia-300 block mb-1">アドバイス</span>
+                <span className="text-sm font-heading text-champagne-400 block mb-1">アドバイス</span>
                 <p className="text-sm text-gray-200 leading-relaxed">
                   {numberResult.interpretation.advice}
                 </p>
@@ -224,11 +224,11 @@ export default function KabbalahPage() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-10 h-10 text-oracle-gold animate-pulse" />
+            <Crown className="w-10 h-10 text-champagne-400 animate-pulse" />
             <h1 className="font-display text-5xl md:text-7xl gradient-text">
               カバラ数秘術
             </h1>
-            <Sparkles className="w-10 h-10 text-oracle-gold animate-pulse" />
+            <Crown className="w-10 h-10 text-champagne-400 animate-pulse" />
           </div>
           <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
             生年月日と名前から、あなたの魂の設計図を解き明かす
@@ -278,7 +278,7 @@ export default function KabbalahPage() {
                     disabled={!birthDate || !fullName}
                     className="w-full text-xl py-6"
                   >
-                    <Sparkles className="w-6 h-6" />
+                    <Crown className="w-6 h-6" />
                     {isCalculating ? '魂の設計図を解析中...' : '神秘を解き明かす'}
                   </Button>
                 </div>
@@ -305,35 +305,35 @@ export default function KabbalahPage() {
                   subtitle="人生の目的と使命"
                   numberResult={result.coreNumbers.lifePath}
                   icon={<Target className="w-5 h-5" />}
-                  accentColor="#fbbf24"
+                  accentColor="#C9B88A"
                 />
                 <NumberCard
                   title="エクスプレッション"
                   subtitle="表現する才能"
                   numberResult={result.coreNumbers.expression}
-                  icon={<Sparkles className="w-5 h-5" />}
-                  accentColor="#f9a8d4"
+                  icon={<Crown className="w-5 h-5" />}
+                  accentColor="#E5D4B4"
                 />
                 <NumberCard
                   title="ソウルナンバー"
                   subtitle="内なる欲求"
                   numberResult={result.coreNumbers.soulUrge}
-                  icon={<Sparkles className="w-5 h-5" />}
-                  accentColor="#e879f9"
+                  icon={<Crown className="w-5 h-5" />}
+                  accentColor="#3D5A80"
                 />
                 <NumberCard
                   title="パーソナリティ"
                   subtitle="外面的な印象"
                   numberResult={result.coreNumbers.personality}
                   icon={<User className="w-5 h-5" />}
-                  accentColor="#c084fc"
+                  accentColor="#5C7AA3"
                 />
                 <NumberCard
                   title="バースデー"
                   subtitle="特別な才能"
                   numberResult={result.coreNumbers.birthday}
                   icon={<Calendar className="w-5 h-5" />}
-                  accentColor="#f0abfc"
+                  accentColor="#B8A472"
                 />
               </div>
             </div>
@@ -347,7 +347,7 @@ export default function KabbalahPage() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-3xl font-heading text-pink-300 mb-4 flex items-center gap-2">
+                      <h3 className="text-3xl font-heading text-champagne-300 mb-4 flex items-center gap-2">
                         <TrendingUp className="w-7 h-7" />
                         あなたの強み・才能
                       </h3>
@@ -360,7 +360,7 @@ export default function KabbalahPage() {
                             transition={{ delay: idx * 0.1 }}
                             className="flex items-start gap-3 p-3 glass rounded-lg"
                           >
-                            <span className="text-pink-400 text-xl">✓</span>
+                            <span className="text-champagne-400 text-xl">✓</span>
                             <span className="text-gray-200 text-base">{strength}</span>
                           </motion.li>
                         ))}
@@ -370,7 +370,7 @@ export default function KabbalahPage() {
 
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-3xl font-heading text-purple-300 mb-4 flex items-center gap-2">
+                      <h3 className="text-3xl font-heading text-midnight-300 mb-4 flex items-center gap-2">
                         <TrendingDown className="w-7 h-7" />
                         克服すべき課題
                       </h3>
@@ -383,7 +383,7 @@ export default function KabbalahPage() {
                             transition={{ delay: idx * 0.1 }}
                             className="flex items-start gap-3 p-3 glass rounded-lg"
                           >
-                            <span className="text-purple-400 text-xl">!</span>
+                            <span className="text-midnight-400 text-xl">!</span>
                             <span className="text-gray-200 text-base">{challenge}</span>
                           </motion.li>
                         ))}
@@ -393,8 +393,8 @@ export default function KabbalahPage() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-white/10 space-y-6">
-                  <div className="p-6 bg-pink-500/10 rounded-xl border border-pink-400/40">
-                    <h3 className="text-3xl font-heading text-pink-300 mb-3 flex items-center gap-2">
+                  <div className="p-6 bg-champagne-500/10 rounded-xl border border-champagne-400/40">
+                    <h3 className="text-3xl font-heading text-champagne-300 mb-3 flex items-center gap-2">
                       <Target className="w-7 h-7" />
                       人生の目的・使命
                     </h3>
@@ -403,8 +403,8 @@ export default function KabbalahPage() {
                     </p>
                   </div>
 
-                  <div className="p-6 bg-fuchsia-500/10 rounded-xl border border-fuchsia-400/40">
-                    <h3 className="text-3xl font-heading text-fuchsia-300 mb-3 flex items-center gap-2">
+                  <div className="p-6 bg-midnight-500/10 rounded-xl border border-midnight-400/40">
+                    <h3 className="text-3xl font-heading text-champagne-400 mb-3 flex items-center gap-2">
                       <Lightbulb className="w-7 h-7" />
                       魂からのアドバイス
                     </h3>

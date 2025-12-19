@@ -18,6 +18,15 @@ export interface TrigramData {
   family: string
   image: string
   symbolism: string
+  // 追加情報
+  direction?: string        // 方位
+  season?: string          // 季節
+  time?: string           // 時間
+  color?: string          // 色
+  bodyPart?: string       // 身体部位
+  animal?: string         // 動物
+  virtue?: string         // 徳性
+  element?: string        // 五行
 }
 
 export const trigrams: TrigramData[] = [
@@ -36,6 +45,14 @@ export const trigrams: TrigramData[] = [
     family: '父',
     image: '天',
     symbolism: '創造力、強さ、リーダーシップ、父性',
+    direction: '南（または北西）',
+    season: '初冬',
+    time: '夜半から早朝',
+    color: '金色、白',
+    bodyPart: '頭',
+    animal: '馬、龍',
+    virtue: '剛健不息',
+    element: '金',
   },
   {
     number: 2,
@@ -52,6 +69,14 @@ export const trigrams: TrigramData[] = [
     family: '少女',
     image: '沢',
     symbolism: '喜び、開放、コミュニケーション、若々しさ',
+    direction: '西',
+    season: '秋',
+    time: '収穫の時',
+    color: '白',
+    bodyPart: '口、舌',
+    animal: '羊',
+    virtue: '喜悦和説',
+    element: '金',
   },
   {
     number: 3,
@@ -68,6 +93,14 @@ export const trigrams: TrigramData[] = [
     family: '中女',
     image: '火',
     symbolism: '知性、明晰さ、美、情熱',
+    direction: '南',
+    season: '夏',
+    time: '正午',
+    color: '赤、紫',
+    bodyPart: '目、心臓',
+    animal: '雉、孔雀',
+    virtue: '光明麗正',
+    element: '火',
   },
   {
     number: 4,
@@ -84,6 +117,14 @@ export const trigrams: TrigramData[] = [
     family: '長男',
     image: '雷',
     symbolism: '行動、衝撃、目覚め、活力',
+    direction: '東',
+    season: '春',
+    time: '日の出',
+    color: '青、緑',
+    bodyPart: '足',
+    animal: '龍（若い）',
+    virtue: '奮発動震',
+    element: '木',
   },
   {
     number: 5,
@@ -100,6 +141,14 @@ export const trigrams: TrigramData[] = [
     family: '長女',
     image: '風',
     symbolism: '浸透、柔軟性、影響力、優しさ',
+    direction: '東南',
+    season: '初夏',
+    time: '朝',
+    color: '緑',
+    bodyPart: '股、呼吸器',
+    animal: '鶏',
+    virtue: '柔順謙入',
+    element: '木',
   },
   {
     number: 6,
@@ -116,6 +165,14 @@ export const trigrams: TrigramData[] = [
     family: '中男',
     image: '水',
     symbolism: '危険、深さ、流動性、知恵',
+    direction: '北',
+    season: '冬',
+    time: '真夜中',
+    color: '黒、紺',
+    bodyPart: '耳、腎臓',
+    animal: '豚',
+    virtue: '険陥智謀',
+    element: '水',
   },
   {
     number: 7,
@@ -132,6 +189,14 @@ export const trigrams: TrigramData[] = [
     family: '少男',
     image: '山',
     symbolism: '静止、安定、瞑想、境界',
+    direction: '北東',
+    season: '晩冬から早春',
+    time: '夜明け前',
+    color: '黄',
+    bodyPart: '手、背中',
+    animal: '犬',
+    virtue: '静止安定',
+    element: '土',
   },
   {
     number: 8,
@@ -148,6 +213,14 @@ export const trigrams: TrigramData[] = [
     family: '母',
     image: '地',
     symbolism: '受容、育成、母性、大地',
+    direction: '南西',
+    season: '晩夏',
+    time: '午後',
+    color: '黄、茶',
+    bodyPart: '腹',
+    animal: '牛',
+    virtue: '柔順厚載',
+    element: '土',
   },
 ]
 
