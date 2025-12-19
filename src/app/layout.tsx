@@ -26,13 +26,13 @@ const notoSansJP = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: 'Mystical Insights - カバラ数秘術×易経',
-  description: '古代の叡智と現代のテクノロジーを融合し、人々の自己理解と成長を支援する世界最高峰の占いプラットフォーム',
-  keywords: ['カバラ数秘術', '易経', '占い', '数秘術', 'スピリチュアル', '自己理解'],
-  authors: [{ name: 'Mystical Insights Team' }],
+  title: 'LUNE NEXUS 〜 数秘と易の黄金律 〜',
+  description: '古代の叡智と現代のテクノロジーを融合し、人々の自己理解と成長を支援する神秘の占いプラットフォーム',
+  keywords: ['カバラ数秘術', '易経', '占い', '数秘術', 'スピリチュアル', '自己理解', 'LUNE NEXUS', '黄金律'],
+  authors: [{ name: 'LUNE NEXUS' }],
   openGraph: {
-    title: 'Mystical Insights - カバラ数秘術×易経',
-    description: '古代の叡智で見つける、あなたの真実',
+    title: 'LUNE NEXUS 〜 数秘と易の黄金律 〜',
+    description: 'カバラ数秘術と易経で見つける、あなたの真実',
     type: 'website',
   },
 }
