@@ -131,22 +131,27 @@ export default function IChingPage() {
           </div>
 
           {/* 卦名と線図 - 2列レイアウト */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 items-center">
             {/* 左列：卦名情報 */}
             <div className="text-center md:text-left">
-              <h2 className="font-display text-4xl md:text-6xl text-champagne-300 mb-3 drop-shadow-lg">
-                {hexagram.name.japanese}
-              </h2>
-              <p className="text-2xl md:text-3xl text-midnight-200 mb-2 font-heading">
+              <div className="mb-4">
+                <span className="inline-block px-6 py-2 bg-champagne-500/20 text-champagne-300 rounded-full text-base font-display border border-champagne-400/30">
+                  第{hexagram.number}卦
+                </span>
+              </div>
+              <h2 className="font-display text-4xl md:text-6xl text-champagne-300 mb-2 drop-shadow-lg leading-tight">
                 {hexagram.name.chinese}
+              </h2>
+              <p className="text-sm md:text-base text-midnight-200 font-body mb-3">
+                {hexagram.name.japanese}
               </p>
-              <p className="text-lg md:text-xl text-gray-300 italic mb-3">
+              <p className="text-xl md:text-2xl text-gray-300 font-display italic">
                 {hexagram.name.english}
               </p>
-              <span className="inline-block px-6 py-2 bg-midnight-500/30 text-midnight-200 rounded-full text-base font-heading">
-                第{hexagram.number}卦
-              </span>
             </div>
+
+            {/* 中央：縦の区切りライン */}
+            <div className="hidden md:block w-px h-48 bg-gradient-to-b from-transparent via-champagne-500/30 to-transparent"></div>
 
             {/* 右列：爻の視覚表示 */}
             <div className="flex justify-center md:justify-end">
@@ -162,8 +167,8 @@ export default function IChingPage() {
 
         {/* 卦辞 - 2列の下、大きめに表示 */}
         <div className="w-full p-6 glass rounded-xl">
-          <h4 className="text-center text-sm font-heading text-champagne-400 mb-3 uppercase tracking-wide">卦辞</h4>
-          <p className="text-center text-lg md:text-xl text-text-primary italic leading-relaxed">
+          <h4 className="text-center text-sm font-display text-champagne-400 mb-3 uppercase tracking-wide">卦辞</h4>
+          <p className="text-center text-lg md:text-xl text-text-primary font-display italic leading-relaxed">
             {hexagram.judgment}
           </p>
         </div>
