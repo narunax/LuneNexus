@@ -131,30 +131,48 @@ export default function IChingPage() {
           </div>
 
           {/* 卦名と線図 - 2列レイアウト */}
-          <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 items-center">
             {/* 左列：卦名情報 */}
-            <div className="text-center md:text-left">
-              <div className="mb-4">
-                <span className="inline-block px-6 py-2 bg-champagne-500/20 text-champagne-300 rounded-full text-base font-display border border-champagne-400/30">
-                  第{hexagram.number}卦
-                </span>
+            <div className="flex justify-center items-center">
+              <div className="text-left">
+                <div className="mb-4">
+                  <span className="inline-block px-6 py-2 bg-champagne-500/20 text-champagne-300 rounded-full text-base font-display border border-champagne-400/30">
+                    第{hexagram.number}卦
+                  </span>
+                </div>
+                {(() => {
+                  // 日本語名をパース: "沢山咸(たくざんかん)" -> ["沢山咸", "たくざんかん"]
+                  const match = hexagram.name.japanese.match(/^(.+?)\((.+?)\)$/)
+                  const fullName = match ? match[1] : hexagram.name.japanese
+                  const reading = match ? match[2] : ''
+
+                  return (
+                    <>
+                      <h2 className="font-display text-4xl md:text-6xl text-champagne-300 mb-2 drop-shadow-lg leading-tight">
+                        {fullName}
+                      </h2>
+                      {reading && (
+                        <p className="text-sm md:text-base text-midnight-200 font-body mb-3">
+                          ({reading})
+                        </p>
+                      )}
+                      <p className="text-2xl md:text-3xl text-champagne-300 font-display mb-3">
+                        {hexagram.name.chinese}
+                      </p>
+                    </>
+                  )
+                })()}
+                <p className="text-xl md:text-2xl text-gray-300 font-display italic">
+                  {hexagram.name.english}
+                </p>
               </div>
-              <h2 className="font-display text-4xl md:text-6xl text-champagne-300 mb-2 drop-shadow-lg leading-tight">
-                {hexagram.name.chinese}
-              </h2>
-              <p className="text-sm md:text-base text-midnight-200 font-body mb-3">
-                {hexagram.name.japanese}
-              </p>
-              <p className="text-xl md:text-2xl text-gray-300 font-display italic">
-                {hexagram.name.english}
-              </p>
             </div>
 
             {/* 中央：縦の区切りライン */}
             <div className="hidden md:block w-px h-48 bg-gradient-to-b from-transparent via-champagne-500/30 to-transparent"></div>
 
             {/* 右列：爻の視覚表示 */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center items-center">
               <HexagramLines
                 binary={hexagram.binary}
                 changingLines={changingLines}
