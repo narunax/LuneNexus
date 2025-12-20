@@ -185,10 +185,20 @@ export default function IChingPage() {
 
         {/* 卦辞 - 2列の下、大きめに表示 */}
         <div className="w-full p-6 glass rounded-xl">
-          <h4 className="text-center text-sm font-display text-champagne-400 mb-3 uppercase tracking-wide">卦辞</h4>
-          <p className="text-center text-lg md:text-xl text-text-primary font-display italic leading-relaxed">
+          <h4 className="text-center text-sm font-display text-champagne-400 mb-4 uppercase tracking-wide">卦辞</h4>
+          <p className="text-center text-lg md:text-xl text-text-primary font-display italic leading-relaxed mb-4">
             {hexagram.judgment}
           </p>
+          {hexagram.judgmentReading && (
+            <p className="text-center text-base md:text-lg text-midnight-200 font-body leading-relaxed mb-4">
+              {hexagram.judgmentReading}
+            </p>
+          )}
+          <div className="border-t border-midnight-400/30 pt-4">
+            <p className="text-center text-base md:text-lg text-text-secondary font-body leading-relaxed">
+              {hexagram.interpretation.general}
+            </p>
+          </div>
         </div>
 
         {/* 上卦・下卦の構成 */}
@@ -199,12 +209,19 @@ export default function IChingPage() {
             {/* 上卦 */}
             <div className="border-b md:border-b-0 md:border-r border-midnight-400/20 pb-6 md:pb-0 md:pr-6">
               <div className="text-center mb-4">
-                {/* 八卦画像スペース（正方形） */}
-                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 rounded-lg border-2 border-champagne-400/30 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-1">{trigrams.upper?.symbol}</div>
-                    <span className="text-champagne-300/50 text-xs">八卦画像<br/>(512x512px)</span>
-                  </div>
+                {/* 八卦画像 */}
+                <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-champagne-400/30">
+                  {trigrams.upper?.imagePath ? (
+                    <img
+                      src={trigrams.upper.imagePath}
+                      alt={trigrams.upper.name.japanese}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 flex items-center justify-center">
+                      <div className="text-4xl">{trigrams.upper?.symbol}</div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-sm text-champagne-300 font-heading mb-1">上卦</div>
                 <div className="text-2xl text-midnight-200 font-bold mb-1">
@@ -239,12 +256,19 @@ export default function IChingPage() {
             {/* 下卦 */}
             <div className="md:pl-6">
               <div className="text-center mb-4">
-                {/* 八卦画像スペース（正方形） */}
-                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 rounded-lg border-2 border-champagne-400/30 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-1">{trigrams.lower?.symbol}</div>
-                    <span className="text-champagne-300/50 text-xs">八卦画像<br/>(512x512px)</span>
-                  </div>
+                {/* 八卦画像 */}
+                <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-champagne-400/30">
+                  {trigrams.lower?.imagePath ? (
+                    <img
+                      src={trigrams.lower.imagePath}
+                      alt={trigrams.lower.name.japanese}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 flex items-center justify-center">
+                      <div className="text-4xl">{trigrams.lower?.symbol}</div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-sm text-champagne-300 font-heading mb-1">下卦</div>
                 <div className="text-2xl text-midnight-200 font-bold mb-1">

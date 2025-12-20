@@ -17,6 +17,7 @@ export interface TrigramData {
   attribute: string
   family: string
   image: string
+  imagePath?: string      // 八卦画像パス
   symbolism: string
   // 追加情報
   direction?: string        // 方位
@@ -44,6 +45,7 @@ export const trigrams: TrigramData[] = [
     attribute: '健',
     family: '父',
     image: '天',
+    imagePath: '/images/trigram/trigram-qian.png',
     symbolism: '創造力、強さ、リーダーシップ、父性',
     direction: '南（または北西）',
     season: '初冬',
@@ -68,6 +70,7 @@ export const trigrams: TrigramData[] = [
     attribute: '説',
     family: '少女',
     image: '沢',
+    imagePath: '/images/trigram/trigram-dui.png',
     symbolism: '喜び、開放、コミュニケーション、若々しさ',
     direction: '西',
     season: '秋',
@@ -92,6 +95,7 @@ export const trigrams: TrigramData[] = [
     attribute: '麗',
     family: '中女',
     image: '火',
+    imagePath: '/images/trigram/trigram-li.png',
     symbolism: '知性、明晰さ、美、情熱',
     direction: '南',
     season: '夏',
@@ -116,6 +120,7 @@ export const trigrams: TrigramData[] = [
     attribute: '動',
     family: '長男',
     image: '雷',
+    imagePath: '/images/trigram/trigram-zhen.png',
     symbolism: '行動、衝撃、目覚め、活力',
     direction: '東',
     season: '春',
@@ -140,6 +145,7 @@ export const trigrams: TrigramData[] = [
     attribute: '入',
     family: '長女',
     image: '風',
+    imagePath: '/images/trigram/trigram-xun.png',
     symbolism: '浸透、柔軟性、影響力、優しさ',
     direction: '東南',
     season: '初夏',
@@ -164,6 +170,7 @@ export const trigrams: TrigramData[] = [
     attribute: '陥',
     family: '中男',
     image: '水',
+    imagePath: '/images/trigram/trigram-kan.png',
     symbolism: '危険、深さ、流動性、知恵',
     direction: '北',
     season: '冬',
@@ -188,6 +195,7 @@ export const trigrams: TrigramData[] = [
     attribute: '止',
     family: '少男',
     image: '山',
+    imagePath: '/images/trigram/trigram-gen.png',
     symbolism: '静止、安定、瞑想、境界',
     direction: '北東',
     season: '晩冬から早春',
@@ -212,6 +220,7 @@ export const trigrams: TrigramData[] = [
     attribute: '順',
     family: '母',
     image: '地',
+    imagePath: '/images/trigram/trigram-kun.png',
     symbolism: '受容、育成、母性、大地',
     direction: '南西',
     season: '晩夏',

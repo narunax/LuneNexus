@@ -39,6 +39,7 @@ export interface Hexagram {
     lower: { name: string; element: string }
   }
   judgment: string
+  judgmentReading?: string // 書き下し文
   interpretation: {
     general: string
     advice: string
