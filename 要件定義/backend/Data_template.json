@@ -1,0 +1,88 @@
+{
+  "id": 0,
+  "gua_name": "卦の名前",
+  "reading": "よみがな",
+  "kanji": "漢字",
+  "english_title": "ENGLISH TITLE",
+  "binary_code": "000000",
+  "trigrams": {
+    "upper": {
+      "name": "八卦名",
+      "nature": "性質（例：剛健）",
+      "element": "五行（例：金）",
+      "direction": "方位（例：北西）",
+      "season": "季節（例：初冬）",
+      "time": "時間（例：夜半）",
+      "animal": "象徴動物（例：龍）",
+      "body_part": "身体部位（例：頭）",
+      "meaning": "象徴する意味のリスト"
+    },
+    "lower": {
+      "name": "八卦名",
+      "nature": "性質",
+      "element": "五行",
+      "direction": "方位",
+      "season": "季節",
+      "time": "時間",
+      "animal": "象徴動物",
+      "body_part": "身体部位",
+      "meaning": "象徴する意味のリスト"
+    }
+  },
+  "oracle_text": "経典の言葉。元亨利貞など。",
+  "core_description": "卦の全体的なエネルギー、宇宙の真理。数行の重厚なテキスト。",
+  "diagnoses": {
+    "time_and_mandate": {
+      "display_name": "流れ・好機",
+      "situation": "外部環境の流れ、タイミングの分析。トランサーフィンのバリアント空間の描写。",
+      "advice": "不可避な流れにどう乗るべきか。天命に対する受容の姿勢。",
+      "warning": "時間的リスク、時期尚早または行き過ぎへの警告。",
+      "affirmation": "「私は完璧なタイミングの中にいます。すべての流れを祝福します。」"
+    },
+    "virtue_and_conduct": {
+      "display_name": "仕事・対人",
+      "situation": "社会的関係性、他者の関心事、アドラー心理学的な課題の分離状況。",
+      "advice": "徳に基づいた戦略的行動。自分を大切にしながら他者へ貢献する具体的な振る舞い。",
+      "warning": "エゴによる支配、境界線の侵犯、不誠実な妥協への警告。",
+      "affirmation": "「私は誠実な行動を通じて、素晴らしい価値を周囲に提供しています。」"
+    },
+    "contemplation_and_cultivation": {
+      "display_name": "自己・精神",
+      "situation": "内面意識の状態。右脳的静寂か、左脳的自動思考（エゴ）の優位か。",
+      "advice": "メタ認知の働かせ方。映画の観客として静観するためのワーク、右脳回帰の促し。",
+      "warning": "過剰なポテンシャル（執着）、重要性の高まり、自分事への埋没に対する警告。",
+      "affirmation": "「私は自分の人生という映画を静かに観賞する、穏やかな観客です。」"
+    },
+    "field_and_foundation": {
+      "display_name": "基盤・環境",
+      "situation": "身体の状態、居住・職場環境、ニコラ・テスラ的エネルギーの磁場。",
+      "advice": "環境調整、グラウンディング、身体のホメオスタシスを整える方法。",
+      "warning": "エネルギーの漏洩、不健全な習慣、基盤の脆弱化に対する警告。",
+      "affirmation": "「私の身体と環境は神聖なエネルギーで満たされ、安定しています。」"
+    }
+  },
+  "inspiration": {
+    "keywords": ["単語1", "単語2", "単語3"],
+    "symbols": ["視覚的シンボル1", "2"],
+    "visual_note": "右脳を刺激する詩的な一文。イメージの誘導。",
+    "meta_perspective": "観客席からこの状況を俯瞰した時の一言メッセージ。"
+  },
+  "lines": [
+    {
+      "position": 1,
+      "meaning": "初爻：状況の始まり、潜伏期。",
+      "advice": "この段階で取るべき、自分で決めて行う小さな一歩。",
+      "affirmation": "「私は確信を持って、最初の一歩を静かに踏み出します。」"
+    },
+    { "position": 2, "meaning": "...", "advice": "...", "affirmation": "..." },
+    { "position": 3, "meaning": "...", "advice": "...", "affirmation": "..." },
+    { "position": 4, "meaning": "...", "advice": "...", "affirmation": "..." },
+    { "position": 5, "meaning": "...", "advice": "...", "affirmation": "..." },
+    {
+      "position": 6,
+      "meaning": "上爻：状況の極まり、変化の予兆。",
+      "advice": "執着を手放し、次のバリアントへの移行準備。",
+      "affirmation": "「私はすべての完了を祝福し、新しい静寂を迎え入れます。」"
+    }
+  ]
+}

@@ -8,10 +8,13 @@ import { Textarea } from '@/components/ui/Input'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { TaijiIcon } from '@/components/icons/TaijiIcon'
 import { HexagramLines } from '@/components/iching/HexagramLines'
+import { HexagramResult } from '@/components/iching/HexagramResult'
 import { coinMethod, randomMethod } from '@/lib/iching/divination'
 import { getHexagram, getHexagramByBinary } from '@/lib/iching/hexagrams'
 import { getTrigramsFromHexagram } from '@/lib/iching/trigrams'
 import type { Hexagram } from '@/types/iching'
+import type { DiagnosisKey } from '@/types/iching-json'
+import { QUESTION_TAGS } from '@/types/iching-json'
 
 type DivinationStep = 'question' | 'casting' | 'manual-input' | 'result'
 type LineValue = 6 | 7 | 8 | 9 | null
@@ -20,6 +23,7 @@ export default function IChingPage() {
   const [step, setStep] = useState<DivinationStep>('question')
   const [question, setQuestion] = useState('')
   const [method, setMethod] = useState<'coins' | 'random'>('coins')
+  const [selectedTagId, setSelectedTagId] = useState<string | null>(null)
   const [primaryHexagram, setPrimaryHexagram] = useState<Hexagram | null>(null)
   const [changingLines, setChangingLines] = useState<number[]>([])
   const [isCasting, setIsCasting] = useState(false)
@@ -375,29 +379,38 @@ export default function IChingPage() {
                       onChange={(e) => setQuestion(e.target.value)}
                       placeholder="心に問いかけたいことを入力してください..."
                     />
-                    <div className="flex flex-wrap gap-2">
-                      {['仕事', '恋愛', '健康', '人間関係', '決断', '成長'].map(
-                        (tag) => (
+
+                    {/* 相談内容の選択 */}
+                    <div className="pt-4 border-t border-white/10">
+                      <h3 className="text-base font-heading text-champagne-400 mb-3">相談内容（任意）</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {QUESTION_TAGS.map((tag) => (
                           <button
-                            key={tag}
-                            onClick={() => setQuestion(`${tag}について: `)}
-                            className="px-3 py-1 text-sm bg-bg-secondary border border-midnight-400/40 rounded-full hover:border-champagne-400 transition-colors"
+                            key={tag.id}
+                            onClick={() => setSelectedTagId(tag.id)}
+                            className={`px-3 py-1.5 rounded-full border transition-all text-sm ${
+                              selectedTagId === tag.id
+                                ? 'border-champagne-400 bg-champagne-400/20 text-champagne-300'
+                                : 'border-midnight-400/30 bg-bg-secondary text-text-secondary hover:border-champagne-500/50'
+                            }`}
                           >
-                            {tag}
+                            <span className="mr-1.5">{tag.icon}</span>
+                            {tag.label}
                           </button>
-                        )
-                      )}
+                        ))}
+                      </div>
+                      <p className="text-xs text-text-secondary mt-2">
+                        未選択または「総合・その他」の場合は、総合的な診断を表示します
+                      </p>
                     </div>
 
                     {/* 占い方法選択 */}
                     <div className="pt-4 border-t border-white/10">
                       <h3 className="text-lg font-heading text-champagne-400 mb-4">占い方法を選択</h3>
                       <div className="grid md:grid-cols-2 gap-4">
-                        <motion.button
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: 0.97 }}
+                        <button
                           onClick={() => setMethod('coins')}
-                          className={`p-5 rounded-xl border-2 transition-all ${
+                          className={`p-5 rounded-xl border-2 transition-colors ${
                             method === 'coins'
                               ? 'border-champagne-400 bg-champagne-400/10'
                               : 'border-midnight-400/40 glass'
@@ -408,13 +421,11 @@ export default function IChingPage() {
                           <p className="text-sm text-text-secondary">
                             6回の硬貨投げの結果を手動で入力
                           </p>
-                        </motion.button>
+                        </button>
 
-                        <motion.button
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: 0.97 }}
+                        <button
                           onClick={() => setMethod('random')}
-                          className={`p-5 rounded-xl border-2 transition-all ${
+                          className={`p-5 rounded-xl border-2 transition-colors ${
                             method === 'random'
                               ? 'border-champagne-400 bg-champagne-400/10'
                               : 'border-midnight-400/40 glass'
@@ -425,7 +436,7 @@ export default function IChingPage() {
                           <p className="text-sm text-text-secondary">
                             直感的にランダムな卦を得る
                           </p>
-                        </motion.button>
+                        </button>
                       </div>
                     </div>
 
@@ -589,196 +600,20 @@ export default function IChingPage() {
                 </CardContent>
               </Card>
 
-              {/* Hexagram Display - 卦名と線図のみ */}
-              <Card variant="floating" glow>
-                <CardContent className="py-8">
-                  <HexagramDisplay hexagram={primaryHexagram} lineValues={resultLineValues} showComposition={false} />
-                </CardContent>
-              </Card>
-
-              {/* Interpretation - 項目名を視覚的に強調 */}
-              <Card variant="glass">
-                <CardHeader>
-                  <CardTitle>解釈</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div className="border-l-4 border-champagne-400 pl-4 bg-champagne-400/5 py-3 rounded-r">
-                      <h3 className="text-lg font-heading text-champagne-400 mb-2 flex items-center gap-2">
-                        <span className="text-xl">📊</span>
-                        状況
-                      </h3>
-                      <p className="text-text-secondary leading-relaxed">
-                        {primaryHexagram.interpretation.general}
-                      </p>
-                    </div>
-                    <div className="border-l-4 border-positive pl-4 bg-positive/5 py-3 rounded-r">
-                      <h3 className="text-lg font-heading text-positive mb-2 flex items-center gap-2">
-                        <span className="text-xl">💡</span>
-                        アドバイス
-                      </h3>
-                      <p className="text-text-secondary leading-relaxed">
-                        {primaryHexagram.interpretation.advice}
-                      </p>
-                    </div>
-                    {primaryHexagram.interpretation.warning && (
-                      <div className="border-l-4 border-negative pl-4 bg-negative/5 py-3 rounded-r">
-                        <h3 className="text-lg font-heading text-negative mb-2 flex items-center gap-2">
-                          <span className="text-xl">⚠️</span>
-                          警告
-                        </h3>
-                        <p className="text-text-secondary leading-relaxed">
-                          {primaryHexagram.interpretation.warning}
-                        </p>
-                      </div>
-                    )}
-                    <div className="border-l-4 border-midnight-400 pl-4 bg-midnight-500/10 py-4 rounded-r">
-                      <h3 className="text-xl font-heading text-midnight-300 mb-4 flex items-center gap-2">
-                        <span className="text-2xl">🔑</span>
-                        キーワードとインスピレーション
-                      </h3>
-                      <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                        これらのキーワードは、卦の本質を多角的に示しています。直感的に響く言葉に注目し、あなたの状況と照らし合わせて解釈を深めてください。
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {primaryHexagram.interpretation.keywords.map(
-                          (keyword, idx) => (
-                            <motion.span
-                              key={idx}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: idx * 0.05 }}
-                              className="px-4 py-2 text-sm bg-gradient-to-r from-midnight-500/20 to-champagne-500/20 text-champagne-200 rounded-full border border-midnight-400/40 hover:border-champagne-400/60 hover:shadow-lg hover:shadow-champagne-500/20 transition-all cursor-default"
-                            >
-                              {keyword}
-                            </motion.span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* 卦の構成 - 解釈の後に表示 */}
-              <Card variant="glass">
-                <CardHeader>
-                  <CardTitle>卦の構成</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {(() => {
-                    const trigrams = getTrigramsFromHexagram(primaryHexagram.binary)
-                    return (
-                      <>
-                        <div className="grid md:grid-cols-2 gap-8">
-                          {/* 上卦 */}
-                          <div className="border-b md:border-b-0 md:border-r border-midnight-400/20 pb-6 md:pb-0 md:pr-6">
-                            <div className="text-center mb-4">
-                              <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 rounded-lg border-2 border-champagne-400/30 flex items-center justify-center">
-                                <div className="text-center">
-                                  <div className="text-4xl mb-1">{trigrams.upper?.symbol}</div>
-                                  <span className="text-champagne-300/50 text-xs">八卦画像<br/>(512x512px)</span>
-                                </div>
-                              </div>
-                              <div className="text-sm text-champagne-300 font-heading mb-1">上卦</div>
-                              <div className="text-2xl text-midnight-200 font-bold mb-1">
-                                {trigrams.upper?.name.japanese}
-                              </div>
-                              <div className="text-sm text-gray-400 mb-3">
-                                {trigrams.upper?.name.chinese} ({trigrams.upper?.name.english})
-                              </div>
-                            </div>
-                            <div className="text-sm text-midnight-200 leading-relaxed">
-                              {[
-                                trigrams.upper?.nature,
-                                trigrams.upper?.attribute,
-                                trigrams.upper?.element,
-                                trigrams.upper?.direction,
-                                trigrams.upper?.season,
-                                trigrams.upper?.time,
-                                trigrams.upper?.color,
-                                trigrams.upper?.family,
-                                trigrams.upper?.bodyPart,
-                                trigrams.upper?.animal,
-                                trigrams.upper?.virtue,
-                              ].filter(Boolean).join(' | ')}
-                            </div>
-                            <div className="mt-3 text-sm text-gray-300 italic border-t border-midnight-400/20 pt-3">
-                              {trigrams.upper?.symbolism}
-                            </div>
-                          </div>
-
-                          {/* 下卦 */}
-                          <div className="md:pl-6">
-                            <div className="text-center mb-4">
-                              <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-champagne-500/20 to-midnight-500/20 rounded-lg border-2 border-champagne-400/30 flex items-center justify-center">
-                                <div className="text-center">
-                                  <div className="text-4xl mb-1">{trigrams.lower?.symbol}</div>
-                                  <span className="text-champagne-300/50 text-xs">八卦画像<br/>(512x512px)</span>
-                                </div>
-                              </div>
-                              <div className="text-sm text-champagne-300 font-heading mb-1">下卦</div>
-                              <div className="text-2xl text-midnight-200 font-bold mb-1">
-                                {trigrams.lower?.name.japanese}
-                              </div>
-                              <div className="text-sm text-gray-400 mb-3">
-                                {trigrams.lower?.name.chinese} ({trigrams.lower?.name.english})
-                              </div>
-                            </div>
-                            <div className="text-sm text-midnight-200 leading-relaxed">
-                              {[
-                                trigrams.lower?.nature,
-                                trigrams.lower?.attribute,
-                                trigrams.lower?.element,
-                                trigrams.lower?.direction,
-                                trigrams.lower?.season,
-                                trigrams.lower?.time,
-                                trigrams.lower?.color,
-                                trigrams.lower?.family,
-                                trigrams.lower?.bodyPart,
-                                trigrams.lower?.animal,
-                                trigrams.lower?.virtue,
-                              ].filter(Boolean).join(' | ')}
-                            </div>
-                            <div className="mt-3 text-sm text-gray-300 italic border-t border-midnight-400/20 pt-3">
-                              {trigrams.lower?.symbolism}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* 卦の成り立ち・総合解釈 */}
-                        <div className="mt-6 pt-6 border-t border-midnight-400/30">
-                          <h5 className="text-base font-heading text-champagne-400 mb-3 flex items-center gap-2">
-                            <span className="text-lg">🔮</span>
-                            卦の成り立ちと意味
-                          </h5>
-                          <div className="text-sm text-gray-200 leading-relaxed space-y-2">
-                            <p>
-                              <span className="text-champagne-300 font-semibold">上卦の{trigrams.upper?.name.japanese}</span>
-                              （{trigrams.upper?.name.chinese}）は<span className="text-midnight-200">{trigrams.upper?.nature}</span>を表し、
-                              <span className="text-champagne-300 font-semibold">下卦の{trigrams.lower?.name.japanese}</span>
-                              （{trigrams.lower?.name.chinese}）は<span className="text-midnight-200">{trigrams.lower?.nature}</span>を象徴します。
-                            </p>
-                            <p className="text-gray-300">
-                              この組み合わせから、{primaryHexagram.name.japanese}（{primaryHexagram.name.chinese}）という卦が成り立ち、
-                              「{primaryHexagram.name.english}」という本質を示しています。
-                              {trigrams.upper?.attribute && trigrams.lower?.attribute && (
-                                <>上の{trigrams.upper.attribute}と下の{trigrams.lower.attribute}が重なることで、この卦独自の意味が生まれます。</>
-                              )}
-                            </p>
-                          </div>
-                        </div>
-                      </>
-                    )
-                  })()}
-                </CardContent>
-              </Card>
+              {/* New JSON-based Hexagram Result Display */}
+              <HexagramResult
+                hexagramNumber={primaryHexagram.number}
+                changingLines={changingLines}
+                lineValues={resultLineValues}
+                binary={primaryHexagram.binary}
+                selectedDiagnosis={selectedTagId ? QUESTION_TAGS.find(t => t.id === selectedTagId)?.mappedDiagnosis || null : null}
+              />
 
               {/* Actions */}
-              <div className="text-center">
-                <Button variant="primary" size="lg" onClick={handleReset}>
-                  <RotateCcw className="w-5 h-5" />
-                  新しい占いを始める
+              <div className="flex justify-center">
+                <Button variant="secondary" size="lg" onClick={handleReset}>
+                  <RotateCcw className="w-5 h-5 mr-2" />
+                  新しい診断を始める
                 </Button>
               </div>
             </motion.div>

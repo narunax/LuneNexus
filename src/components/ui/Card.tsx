@@ -25,8 +25,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
-        whileTap={{ scale: 0.98, transition: { duration: 0.15 } }}
         className={cn(
           'rounded-2xl p-6 transition-all duration-150',
           variantStyles[variant],

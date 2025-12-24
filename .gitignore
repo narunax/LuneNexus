@@ -40,3 +40,9 @@ next-env.d.ts
 .venv/
 __pycache__/
 *.py[cod]
+
+# local data (use public/data instead)
+/data/
+
+# claude settings (local only)
+.claude/settings.local.json
